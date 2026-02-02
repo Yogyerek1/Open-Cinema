@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Client } from 'pg';
+import { responseType } from './types';
 
 @Injectable()
 export class AppService {
@@ -7,7 +8,7 @@ export class AppService {
     return 'Hello World!';
   }
 
-  async healthCheck() {
+  async healthCheck(): Promise<responseType> {
     const client = new Client({ connectionString: process.env.DATABASE_URL });
     try {
       await client.connect();
